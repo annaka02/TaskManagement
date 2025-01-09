@@ -7,7 +7,7 @@ app.get('/',(req,res)=>{
     res.status(200).json({prenom:'anna'})
 })
 //app.post qui recoit n objet une requete nom et prenom et age et qui retourne si l'utilisateur est apte a rentrer ou pas 
-let users = [];
+
 app.post('/users', (req,res) => {
     console.log(req);
     
@@ -22,6 +22,11 @@ return res.status(400).json({message: 'l utilisateur doit au moins avoir 18 ans 
         return res.status(200).json({firstName, lastName, age});
     }
 });
+let users = [];
+app.post('/addUsers', (req,res) => {
+    users.push(req.body);
+    return res.status(200).json(users);
+})
 
 
 
