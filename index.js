@@ -27,7 +27,7 @@ app.post('/addUsers', (req,res) => {
     users.push(req.body);
     return res.status(200).json(users);
 })
-
+// delete user and update user
 
 
 app.listen(3000,()=>{
