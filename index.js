@@ -39,6 +39,7 @@ app.delete('/deleteUser/:id', (req, res) => {
     if(index === -1){
         return res.status(404).json({message: 'Utilisateur non trouvé'});
     }
+    users.splice(index, 1);
     res.status(200).json({
         message: `Utilisateur avec ID ${id} supprimé avec succès.`,
     remainingUsers: users
@@ -60,7 +61,18 @@ app.put('/updateUser/:id', (req, res) => {
     updatedUser: users[index]
 });
 });
-
+app.get('/allUsers', (req,res) => {
+    res.status(200).json(users);
+})
+app.get('/getbyid/:id',(req,res)=>{
+    const id = +req.params.id;
+    console.log("id :",id);
+    
+    const user = users.filter(u => u.id === id);
+    console.log(user);
+    
+    res.status(200).json(user);
+})
 app.listen(3000,()=>{
     console.log("executer dans le port 3000");
     
