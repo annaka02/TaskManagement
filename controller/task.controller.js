@@ -1,6 +1,8 @@
 //creer 5controller pour lister
 // lister toutes les taches 
 // Simulation de données (exemple)
+const task = require("../model/task.model");
+const Task = require("../model/task.model")
 let tasks = [
     { id: 1, name: 'Tâche 1', completed: false },
     { id: 2, name: 'Tâche 2', completed: true },
@@ -8,15 +10,14 @@ let tasks = [
   
   // Lister les tâches
   exports.listTasks = (req, res) => {
-    res.status(200).json(tasks);
+    res.status(200).json(Task.getAllTask());
   };
   
   // Ajouter une tâche
   exports.createTask = (req, res) => {
-    const { name, completed } = req.body;
-    const newTask = { id: tasks.length + 1, name, completed: !!completed };
-    tasks.push(newTask);
-    res.status(201).json(newTask);
+    const { title, description } = req.body;
+    const tache = Task.create(title, description);
+    res.status(201).json(tache);
   };
   
   // Mettre à jour une tâche
