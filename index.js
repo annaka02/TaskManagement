@@ -1,7 +1,13 @@
 const express = require ('express');
 const bodyParser = require ('body-parser');
+const taskRoutes = require('./routes/task.routes');
 const app = express(); 
 app.use(bodyParser.json());
+
+app.use(express.json()); // Pour parser le JSON
+
+// Utiliser les routes pour les tâches
+app.use('/api/tasks', taskRoutes);
 
 app.get('/',(req,res)=>{
     res.status(200).json({prenom:'anna'})
